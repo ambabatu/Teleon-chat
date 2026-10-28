@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#5276e8"><title>Teleon — Chat</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="authView" class="auth-shell">
+    <div class="auth-art"><div class="brand-mark">✦</div><div class="brand-name">teleon</div><h1>Obrolanmu,<br>di mana saja.</h1><p>Pesan, berbagi foto, dan tetap terhubung di semua perangkat.</p><div class="bubble b1">Hai! 👋</div><div class="bubble b2">Pesan masuk ✨</div></div>
+    <div class="auth-card"><div class="mobile-brand"><span class="brand-mark small">✦</span><b>teleon</b></div><h2 id="authTitle">Selamat datang</h2><p class="muted" id="authSubtitle">Masuk untuk melanjutkan obrolan.</p>
+      <form id="authForm"><label>Username<input id="authUsername" minlength="3" maxlength="20" autocomplete="username" placeholder="contoh: arip_01" required></label><label>Password<input id="authPassword" type="password" minlength="6" autocomplete="current-password" placeholder="Minimal 6 karakter" required></label><button class="primary wide" id="authSubmit">Masuk</button></form>
+      <p class="auth-switch"><span id="switchText">Belum punya akun?</span> <button id="switchAuth" class="text-button">Daftar</button></p><p id="authError" class="error"></p><p class="tiny muted">Versi starter untuk pengujian. Gunakan password unik.</p>
+    </div>
+  </div>
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar">
+      <header class="side-header"><div class="brand-inline"><span class="brand-mark small">✦</span><b>teleon</b></div><div class="header-actions"><button id="newChatBtn" class="icon-btn" title="Chat baru">＋</button><button id="newGroupBtn" class="icon-btn" title="Buat grup">♧</button><button id="profileBtn" class="icon-btn" title="Profil">☻</button></div></header>
+      <div class="search-wrap"><span>⌕</span><input id="searchInput" placeholder="Cari chat atau username..."></div>
+      <div id="searchResults" class="search-results hidden"></div>
+      <div class="tabs"><button class="tab active" data-filter="all">Semua</button><button class="tab" data-filter="unread">Belum dibaca</button></div>
+      <div id="chatList" class="chat-list"><div class="empty-side">Obrolanmu akan muncul di sini.</div></div>
+      <footer class="side-footer"><div class="connection-dot"></div><span>Chat realtime aktif</span><button id="logoutBtn" class="text-button logout">Keluar</button></footer>
+    </aside>
+    <main class="main-panel">
+      <section id="welcomePane" class="welcome-pane"><div class="welcome-illustration"><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="welcome-chat">✦</div></div><h2>Mulai percakapan</h2><p>Pilih chat di samping atau cari username untuk mengirim pesan.</p><button id="welcomeNewChat" class="primary">＋ Chat baru</button><div class="secure-note">✦ Pesan disimpan di server aplikasi ini</div></section>
+      <section id="conversationPane" class="conversation hidden"><header class="conversation-header"><button id="backBtn" class="icon-btn back-btn">‹</button><div id="activeAvatar" class="avatar">T</div><div class="active-details"><strong id="activeName">Username</strong><span id="activeStatus">akun teleon</span></div><div class="conversation-actions"><button class="icon-btn" id="voiceCallBtn" title="Panggilan suara">☎</button><button class="icon-btn" id="chatInfoBtn" title="Info kontak/grup">ⓘ</button></div></header>
+        <div id="messages" class="messages"><div class="date-chip">Hari ini</div></div><div id="typingIndicator" class="typing hidden">sedang mengetik…</div>
+        <form id="messageForm" class="composer"><button type="button" id="recordVoiceBtn" class="attach-btn" title="Rekam pesan suara">🎙</button><label class="attach-btn" title="Kirim foto">＋<input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden></label><input id="messageInput" autocomplete="off" maxlength="4000" placeholder="Tulis pesan..." aria-label="Tulis pesan"><button id="sendBtn" class="send-btn" type="submit" title="Kirim">➤</button></form><div class="composer-hint">Enter untuk mengirim · Foto maksimal 5 MB · 🎙 untuk pesan suara</div>
+      </section>
+    </main>
+    <aside id="profilePanel" class="profile-panel hidden"><header><button id="closeProfile" class="icon-btn">×</button><strong>Profil kamu</strong></header><div class="profile-content"><div id="profileAvatar" class="profile-avatar">T</div><label class="avatar-change">Ganti foto<input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden></label><h3 id="profileUsername">username</h3><p class="muted">Profil publik</p><label class="bio-label">Bio <span id="bioCount">0/160</span><textarea id="bioInput" maxlength="160" placeholder="Ceritakan sedikit tentang dirimu..."></textarea></label><button id="saveBio" class="primary wide">Simpan profil</button><p id="profileNotice" class="muted"></p><div class="profile-tip">Tips: gunakan username yang mudah ditemukan temanmu.</div>
+      <section id="ownerPanel" class="owner-panel hidden"><div class="owner-panel-heading"><div><h3>Owner Control</h3><p class="muted">Akun yang terdaftar di server TELEON</p></div><span class="owner-pill">OWNER</span></div>
+        <div id="ownerStats" class="owner-stats">Memuat statistik…</div>
+        <button id="refreshUsers" class="secondary wide">Muat daftar akun</button>
+        <div id="ownerUsers" class="owner-users"><p class="muted">Tekan muat daftar akun.</p></div><div class="owner-panel-heading report-heading"><div><h3>Laporan grup</h3><p class="muted">Tinjau laporan dan blokir grup yang melanggar.</p></div><button id="refreshReports" class="secondary">Muat</button></div><div id="ownerReports" class="owner-users"><p class="muted">Belum dimuat.</p></div>
+        <p class="owner-disclaimer">Daftar ini hanya menampilkan akun yang terdaftar di server ini, bukan instalasi APK yang belum pernah login.</p>
+      </section>
+    </div></aside>
+  </div>
+  <div id="toast" class="toast hidden"></div>
+  <div id="groupCreateModal" class="modal-backdrop hidden"><form id="groupCreateForm" class="group-modal"><div class="modal-kicker">✦ TELEON COMMUNITY</div><h2>Buat grup baru</h2><p class="muted">Bangun ruang obrolan bersama teman-temanmu.</p><label>Nama grup<input id="newGroupName" maxlength="50" required placeholder="Contoh: Teman sekolah"></label><label>Bio grup<textarea id="newGroupBio" maxlength="160" placeholder="Ceritakan tentang grup ini..."></textarea></label><label>Foto profil grup<input id="newGroupAvatar" type="file" accept="image/png,image/jpeg,image/webp,image/gif"></label><label>Tambahkan username anggota<input id="newGroupMembers" placeholder="arip_01, teman_02"></label><div class="modal-actions"><button type="button" id="cancelGroupCreate" class="secondary">Batal</button><button type="submit" class="primary" id="createGroupSubmit">Buat grup ✦</button></div><p id="groupCreateError" class="error"></p></form></div>
+  <div id="groupManageModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="groupManageTitle">
+    <section class="group-manage-card">
+      <header class="group-manage-head"><div><div class="modal-kicker">✦ TELEON COMMUNITY</div><h2 id="groupManageTitle">Pengaturan grup</h2><p id="groupManageSubtitle" class="muted">Kelola anggota dan informasi grup.</p></div><button type="button" id="closeGroupManage" class="icon-btn" aria-label="Tutup">×</button></header>
+      <div id="groupManageSummary" class="group-manage-summary"></div>
+      <div id="groupManageActions" class="group-action-grid"></div>
+      <div id="groupManageDetail" class="group-manage-detail hidden"></div>
+      <p id="groupManageError" class="error"></p>
+    </section>
+  </div>
+  <input id="groupAvatarInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+  <script src="/socket.io/socket.io.js"></script><script src="/app.js"></script>
+</body></html>
